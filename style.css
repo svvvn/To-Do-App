@@ -1,0 +1,366 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Cairo", "Jost", sans-serif;
+}
+
+
+body {
+  min-height: 100vh;
+  background: #0f172a; 
+  background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; 
+  color: #fff;
+  padding: 20px;
+  position: relative;
+}
+
+
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  animation: mesh-move 20s infinite alternate;
+}
+
+body::before {
+  background: rgba(108, 99, 255, 0.15);
+  top: -50px;
+  right: -50px;
+}
+
+body::after {
+  background: rgba(0, 229, 255, 0.1);
+  bottom: -50px;
+  left: -50px;
+  animation-delay: -10s;
+}
+
+@keyframes mesh-move {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(100px, 50px) scale(1.2);
+  }
+}
+
+.motivation span {
+  position: absolute;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 800;
+  opacity: 0;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  letter-spacing: 2px;
+  animation: floatUp var(--duration, 15s) linear infinite;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(110vh) translateX(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.45;
+    color: rgba(255, 255, 255, 0.05);
+  }
+  80% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(-20vh) translateX(20px);
+    opacity: 0;
+  }
+}
+
+.todo-app {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 480px;
+  padding: 40px 30px;
+  border-radius: 30px;
+  background: rgba(15, 23, 42, 0.4); 
+  backdrop-filter: blur(40px) saturate(150%);
+  -webkit-backdrop-filter: blur(40px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
+  transition: 0.4s ease;
+}
+
+.todo-app:hover {
+  transform: scale(1.02);
+}
+
+/* Floating Motivational Texts */
+.motivation {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.motivation span {
+  position: absolute;
+  font-size: clamp(1rem, 5vw, 2.5rem);
+  font-weight: 700;
+  opacity: 0;
+  color: rgba(255, 255, 255, 0.05);
+  text-shadow: 0 0 15px rgba(108, 99, 255, 0.3);
+  animation: floatUp var(--duration, 15s) linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(110vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-20vh) rotate(10deg);
+    opacity: 0;
+  }
+}
+
+/* Todo App Glassmorphism */
+.todo-app {
+  width: 100%;
+  max-width: 480px;
+  padding: 40px 30px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.todo-app:hover {
+  transform: scale(1.01);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(to right, #00e5ff, #6c63ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 5px 15px rgba(108, 99, 255, 0.4));
+}
+.subtitle {
+  opacity: 0.6;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Form Elements */
+.tasks-form {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+input {
+  flex: 1;
+  padding: 15px 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+
+input:focus {
+  outline: none;
+  background: rgba(0, 0, 0, 0.4);
+  border-color: #6c63ff;
+  box-shadow: 0 0 20px rgba(108, 99, 255, 0.2);
+}
+
+#add-btn {
+  width: 55px;
+  height: 55px;
+  border-radius: 15px;
+  border: none;
+  background: linear-gradient(135deg, #6c63ff, #454e8b);
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: 0.4s;
+  box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+}
+
+#add-btn:hover {
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 0 30px #6c63ff;
+}
+
+/* Stats & Progress */
+.stats-container {
+  margin-bottom: 25px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 15px;
+  border-radius: 20px;
+}
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+.stat-item {
+  text-align: center;
+}
+.stat-item .value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00e5ff;
+}
+.stat-item .label {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.progress-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+#progress {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00e5ff, #6c63ff);
+  transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+  box-shadow: 0 0 10px #00e5ff;
+}
+
+/* Task List */
+#task-list {
+  list-style: none;
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+#task-list::-webkit-scrollbar {
+  width: 5px;
+}
+#task-list::-webkit-scrollbar-thumb {
+  background: rgba(108, 99, 255, 0.5);
+  border-radius: 10px;
+}
+
+li {
+  background: rgba(255, 255, 255, 0.07);
+  margin-bottom: 12px;
+  padding: 15px 20px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  animation: slideIn 0.4s ease forwards;
+}
+
+li:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(-5px);
+  border-color: rgba(108, 99, 255, 0.3);
+}
+
+li.done {
+  opacity: 0.5;
+}
+li.done .task-text {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  flex: 1;
+}
+
+/* Trash Icon Button */
+.del-btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 107, 107, 0.1);
+  color: #ff6b6b;
+  cursor: pointer;
+  transition: 0.3s;
+  display: grid;
+  place-items: center;
+}
+
+.del-btn:hover {
+  background: #ff6b6b;
+  color: white;
+  transform: scale(1.1) rotate(10deg);
+}
+
+.empty {
+  text-align: center;
+  padding: 40px 0;
+  opacity: 0.4;
+  display: none;
+}
+.empty i {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.removing {
+  animation: removeScale 0.3s forwards;
+}
+@keyframes removeScale {
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVN ToDo | إنجازك اليومي</title>
+  <link rel="icon" type="image/png" href="./imgs/svn.png">
+  <link href="https://fonts.googleapis.com" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="motivation" id="motivation-container">
+    <span>استمر في التقدم!</span>
+    <span>خطوات صغيرة يومياً!</span>
+    <span>الانضباط هو المفتاح!</span>
+    <span>ركز على الإنجاز!</span>
+    <span>لا تيأس أبداً!</span>
+  </div>
+
+  <div class="todo-app">
+    <header>
+      <h1><i class="fa-solid fa-rocket"></i> SVN Todo</h1>
+      <p class="subtitle">نظم مهامك بذكاء</p>
+    </header>
+
+    <form id="task-form" class="tasks-form">
+      <input id="task-input" type="text" placeholder="ماذا ستنجز اليوم؟" autocomplete="off" />
+      <button type="submit" id="add-btn"><i class="fa-solid fa-plus"></i></button>
+    </form>
+
+    <div class="stats-container">
+      <div class="stats">
+        <div class="stat-item">
+          <span class="label">الكل</span>
+          <span id="total-count" class="value">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="label">المكتمل</span>
+          <span id="done-count" class="value">0</span>
+        </div>
+      </div>
+      <div class="progress-box">
+        <div class="progress-bar"><span id="progress"></span></div>
+      </div>
+    </div>
+
+    <ul id="task-list"></ul>
+
+    <div class="empty">
+      <i class="fa-solid fa- wind"></i>
+      <p>قائمتك فارغة.. ابدأ الآن!</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
